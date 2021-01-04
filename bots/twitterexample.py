@@ -21,7 +21,8 @@ for tweet in timeline:
 #api.update_status("Test tweet from another place -_+")
 
 # Retrieve user details
-user = api.get_user("marybriggs777")
+# NOTE: randomUser is not an actual user, change for test purposes
+user = api.get_user("randomUser")
 print("User details:")
 print(f"Name is: {user.name}, bio is: {user.description}, location is: {user.location}")
 print ("Last 20 Followers")
