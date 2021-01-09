@@ -13,6 +13,10 @@ A lot of the instructions below will be on the assumption that you have Docker i
 First things first, we need to sign up to a twitter developer account in order to use the api. It is fairly easy to sign up, just fill in the information in the link below:
 <https://developer.twitter.com/en/apply-for-access>
 
-
-
+After that is done, let's create a virtual environment 
+'''
+mkdir tweepVenv && cd tweepVenv
+python3 -m venv tweepVenvenv
+source tweepVenvenv/bin/activate
+'''
 
