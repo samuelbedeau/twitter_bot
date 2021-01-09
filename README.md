@@ -14,9 +14,9 @@ First things first, we need to sign up to a twitter developer account in order t
 <https://developer.twitter.com/en/apply-for-access>
 
 After that is done, let's create a virtual environment 
-'''
+```
 mkdir tweepVenv && cd tweepVenv
 python3 -m venv tweepVenvenv
 source tweepVenvenv/bin/activate
-'''
+```
 
