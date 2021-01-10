@@ -37,3 +37,32 @@ The fundamentals of this RESTful api is:
 2. Methods - Know the libraries methods such as:
 ```
 api.get_user("randomUser")
+```
+## Brief Example
+```
+import tweepy
+import os
+
+def create_api():
+    consumer_key - os.getenv("CONSUMER_KEY")
+    consumer_secret = os.getenv("CONSUMER_SECRET")
+    access_token = os.getenv("ACCESS_TOKEN")
+    access_token_secret =os.getenv("ACCESS_TOKEN_SECRET")
+
+    auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+    auth.set_access_token(access_token,access_token_secret)
+    api=tweepy.API()
+    try:
+        api.verify_credentials()
+    except Exception as e:
+        raise e
+    return api
+```
+
+This is the basic authentication and creating your api object. 
+Then using certain methods you can create various operations:
+```
+timeline = api.home_timeline()
+for tweet in timeline:
+    print(f"{tweet.user.name} said {tweet.text}")
+```
