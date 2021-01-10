@@ -1,5 +1,6 @@
 # Tweepy API twitter_bot containerised with Docker
 The following repo uses Tweepy: an open source Python package which abstracts a lot of complexity away in accessing Twitter API with Python. 
+
 The python scripts are then containerised and are made an image, then run in an container which packages all code and its dependencies so it can virtually run on anything and anywhere regardless of OS restraints/versions, etc. 
 
 ## Getting Started
@@ -76,5 +77,50 @@ myListener = Listener()
 myStream = tweepy.Stream(api.auth, myListener)
 ```
 
-Once you have set these up, feel free to check Tweepy documentation and my repo to play around with twitter api!
+## Docker 
+To run these scripts in an image we are going to have to create a Dockerfile
+The base image will be python, then we will copy in the scripts, any dependencies via pip (where the requirements.txt file comes in)
+and have a starting command
 
+After that we'll build the image
+
+And run it in a container. 
+Here will be a condensed version of the dockerfile just to lay out an example
+``` 
+FROM python:3.7-alpine
+```
+This is your base image command. So what the image pulls from. It can be anything from a java image, to even an image that you have built before too. Python is our base image because
+our container is for one purpose only: Python scripts. 
+
+Containers are meant to be lightweight so it won't have everything like a VM would have running on it.
+
+```
+COPY bots/fav.py /bots/
+```
+Next we have a copy instruction which is where we copy in our files into what will be the container's shell/ file directory
+Once you have run the container you can actually jump into the container's shell and see these files if you pull an 'ls' command
+```
+RUN pip install -r /tmp/requirements.txt
+```
+This is to install dependencies, imports for the scripts you just copied in. 
+```
+WORKDIR /bots
+```
+This command sets the working directory of your Docker container. Every command will be executed from the specified directory
+
+```
+CMD ["python3", "fav.py"]
+```
+This the command that is executed by default when the container runs. In this case we will be executing the fav.py script.
+
+### Building and Running
+To build your Dockerfile into an image you would run a command like this: 
+```
+(tweepVenvenv) hostname:~/tweepy-bots$ sudo docker build . -t fav-retweet-bot
+```
+Then to run the image:
+```
+sudo docker run -it -e CONSUMER_KEY="" -e CONSUMER_SECRET="" -e ACCESS_TOKEN="" -e ACCESS_TOKEN_SECRET="" fave-retweet-bot
+```
+Once you have set these up, feel free to check Tweepy documentation and my repo to play around with the api!
+Happy Python'ing and Docker'ing!
