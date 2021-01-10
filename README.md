@@ -20,3 +20,20 @@ python3 -m venv tweepVenvenv
 source tweepVenvenv/bin/activate
 ```
 
+And create a directory for your scripts.
+```
+mkdir tweepy-bot && cd tweepy-bot
+```
+
+After that is done, install the tweepy module using pip
+```
+pip install tweepy
+pip freeze > requirements.txt
+```
+
+### API practice
+The fundamentals of this RESTful api is:
+1. Authentication - assign api keys to api object you create when instantiating tweepy.API
+2. Methods - Know the libraries methods such as:
+```
+api.get_user("randomUser")
